@@ -33,6 +33,7 @@ body {
 }
 
 .card-wrapper {
+    float:left;  
     margin: 0 auto;
     height:auto;
     overflow: hidden;

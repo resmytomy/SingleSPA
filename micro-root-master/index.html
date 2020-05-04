@@ -12,6 +12,7 @@
         "imports": {
           "hardware": "http://localhost:4204/main.js",
           "dashboard": "http://localhost:4202/main.js",
+          "tree": "http://localhost:4206/main.js",
         
           "navBar": "http://localhost:4205/main.js",
 
@@ -28,10 +29,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
     <style>
+     
     </style>
   </head>
   <body>
     <script>
+      
+
       System.import('single-spa').then(function (singleSpa) {
         // singleSpa.registerApplication(
         //   'header',
@@ -43,7 +47,18 @@
         //     // return true;
         //   }
         // )
+      
         singleSpa.registerApplication(
+          'tree',
+          function () {
+            return System.import('tree');
+          },
+          function (location) {
+     //return location.pathname.startsWith('/tree');
+            return true;
+          }
+        )
+          singleSpa.registerApplication(
           'dashboard',
           function () {
             return System.import('dashboard');
@@ -53,6 +68,7 @@
             return true;
           }
         )
+     
         singleSpa.registerApplication(
           'navBar',
           function () {
@@ -64,13 +80,14 @@
           }
         )
        
+       
         singleSpa.registerApplication(
           'hardware',
           function () {
             return System.import('hardware');
           },
           function (location) {
-            return location.pathname.startsWith('/hardware');
+         return location.pathname.startsWith('/hardware');
             return true;
           }
         )
